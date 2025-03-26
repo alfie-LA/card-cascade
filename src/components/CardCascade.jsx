@@ -146,7 +146,7 @@ const CardCascade = () => {
   ❓ How to Play
 </button>
 
-      <div className="grid grid-cols-4 gap-2 bg-white/30 p-4 rounded shadow-md backdrop-blur-sm">
+        <div className="grid grid-cols-4 gap-2 bg-white/30 p-4 rounded shadow-md backdrop-blur-sm w-full max-w-[95vw] sm:max-w-none">
         {grid.flat().map((card, index) => (
           <div
             key={index}
