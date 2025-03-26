@@ -39,6 +39,45 @@ const CardCascade = () => {
       setHasMoved(false);
     }
   }, [hasMoved, gameOver]);
+  useEffect(() => {
+    let touchStartX = 0;
+    let touchStartY = 0;
+  
+    const handleTouchStart = (e) => {
+      const touch = e.touches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+    };
+  
+    const handleTouchEnd = (e) => {
+      const touch = e.changedTouches[0];
+      const dx = touch.clientX - touchStartX;
+      const dy = touch.clientY - touchStartY;
+  
+      const absDx = Math.abs(dx);
+      const absDy = Math.abs(dy);
+  
+      if (Math.max(absDx, absDy) < 30) return;
+  
+      let simulatedKey = null;
+      if (absDx > absDy) {
+        simulatedKey = dx > 0 ? 'ArrowRight' : 'ArrowLeft';
+      } else {
+        simulatedKey = dy > 0 ? 'ArrowDown' : 'ArrowUp';
+      }
+  
+      const keyboardEvent = new KeyboardEvent('keydown', { key: simulatedKey });
+      window.dispatchEvent(keyboardEvent);
+    };
+  
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+  
+    return () => {
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -80,47 +119,7 @@ const CardCascade = () => {
         }
       }
     };
-    useEffect(() => {
-      let touchStartX = 0;
-      let touchStartY = 0;
-    
-      const handleTouchStart = (e) => {
-        const touch = e.touches[0];
-        touchStartX = touch.clientX;
-        touchStartY = touch.clientY;
-      };
-    
-      const handleTouchEnd = (e) => {
-        const touch = e.changedTouches[0];
-        const dx = touch.clientX - touchStartX;
-        const dy = touch.clientY - touchStartY;
-    
-        const absDx = Math.abs(dx);
-        const absDy = Math.abs(dy);
-    
-        // Ignore small movements
-        if (Math.max(absDx, absDy) < 30) return;
-    
-        let simulatedKey = null;
-        if (absDx > absDy) {
-          simulatedKey = dx > 0 ? 'ArrowRight' : 'ArrowLeft';
-        } else {
-          simulatedKey = dy > 0 ? 'ArrowDown' : 'ArrowUp';
-        }
-    
-        const keyboardEvent = new KeyboardEvent('keydown', { key: simulatedKey });
-        window.dispatchEvent(keyboardEvent);
-      };
-    
-      window.addEventListener('touchstart', handleTouchStart, { passive: true });
-      window.addEventListener('touchend', handleTouchEnd, { passive: true });
-    
-      return () => {
-        window.removeEventListener('touchstart', handleTouchStart);
-        window.removeEventListener('touchend', handleTouchEnd);
-      };
-    }, []);
-    
+  
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [grid, score, highScore, gameOver]);
