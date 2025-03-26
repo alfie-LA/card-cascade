@@ -150,7 +150,7 @@ const CardCascade = () => {
         {grid.flat().map((card, index) => (
           <div
             key={index}
-            className={`relative w-24 h-32 sm:w-20 sm:h-28 rounded-xl flex flex-col  items-center justify-center text-center text-sm font-semibold
+            className={`relative w-28 h-36 sm:w-20 sm:h-28 rounded-xl flex flex-col  items-center justify-center text-center text-sm font-semibold
               shadow-sm backdrop-blur-md transition-all duration-300
               ${card ? classStyles[card.className] : 'bg-white/30 border-gray-300'} border-2
               ${card && bonusCards.includes(card.id) && card.className === 'Mammals' ? jokerGlowClass : ''}
