@@ -127,11 +127,11 @@ const CardCascade = () => {
       style={{ backgroundImage: "url('/assets/images/eco-bg.png')" }}
     >
       <div className="text-center space-y-2 mb-4 sm:mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold">🧬 Card Cascade</h1>
-        <div className="text-lg sm:text-xl font-semibold">Score: {score}</div>
-        <div className="text-md sm:text-lg text-yellow-600 font-semibold">🏆 High Score: {highScore}</div>
+        <h1 className="text-4xl sm:text-5xl font-bold">🧬 Card Cascade</h1>
+        <div className="text-3xl sm:text-4xl font-semibold">Score: {score}</div>
+        <div className="text-2xl sm:text-3xl text-yellow-600 font-semibold">🏆 High Score: {highScore}</div>
         {gameOver && (
-          <div className="text-red-600 font-bold animate-bounce">💀 Game Over – No Moves Left!</div>
+          <div className="text-red-600 font-bold animate-bounce text-lg sm:text-xl">💀 Game Over – No Moves Left!</div>
         )}
         <button
           onClick={() => setShowInstructions(true)}
@@ -153,7 +153,7 @@ const CardCascade = () => {
                   alt={card.className}
                   className="w-[65%] h-[65%] max-w-[65%] max-h-[65%] object-contain mb-1"
                 />
-                <div className="text-3xl sm:text-2xl font-bold leading-none">{card.rank}</div>
+                <div className="text-5xl sm:text-4xl font-bold leading-none">{card.rank}</div>
                 {(bonusCards.includes(card.id) || jokerCards.includes(card.id)) && (
                   <>
                     <div className={`absolute w-16 h-16 animate-ping rounded-full opacity-70 z-10 ${sparkleColors[card.className]}`}></div>
