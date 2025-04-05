@@ -126,7 +126,7 @@ const CardCascade = () => {
       className="min-h-screen flex flex-col items-center justify-center px-2 py-6 sm:py-10 bg-cover bg-center"
       style={{ backgroundImage: "url('/assets/images/eco-bg.png')" }}
     >
-      <div className="text-center space-y-2 mb-4 sm:mb-6">
+      <div className="absolute top-4 w-full flex justify-center z-50">
         <div className="text-4xl sm:text-5xl font-bold text-white drop-shadow-[0_1px_2px_black]">Score: {score}</div>
         <div className="text-3xl sm:text-4xl text-yellow-600 drop-shadow-[0_1px_2px_black] font-semibold">🏆 High Score: {highScore}</div>
         {gameOver && (
