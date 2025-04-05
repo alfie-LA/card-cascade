@@ -162,7 +162,7 @@ const CardCascade = () => {
                 <img
                   src={`/assets/icons/${card.className.toLowerCase()}.png`}
                   alt={card.className}
-                  className="w-20 h-20 mx-auto mb-1"
+                  className="w-16 h-16 sm:w-14 sm:h-14 mx-auto mb-1"
                 />
                 <div className="text-lg font-bold">{card.rank}</div>
                 {(bonusCards.some(b => b.id === card.id) || jokerCards.some(j => j.id === card.id)) && (
