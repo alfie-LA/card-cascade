@@ -154,7 +154,7 @@ const CardCascade = () => {
                   className="w-[65%] h-[65%] max-w-[65%] max-h-[65%] object-contain mb-1"
                 />
                 <div className="text-5xl sm:text-4xl font-bold leading-none">{card.rank}</div>
-                {(bonusCards.includes(card.id) || jokerCards.includes(card.id)) && (
+                {(bonusCards.some(b => b.id === card.id) || jokerCards.some(j => j.id === card.id)) && (
                   <>
                     <div className={`absolute w-16 h-16 animate-ping rounded-full opacity-70 z-10 ${sparkleColors[card.className]}`}></div>
                     <div className="absolute top-0 w-full text-center text-sm sm:text-base text-white font-bold bg-black/70 px-1 py-0.5 rounded-t z-20 animate-fadeIn">
