@@ -126,13 +126,19 @@ const CardCascade = () => {
       className="min-h-screen flex flex-col items-center justify-center px-2 py-6 sm:py-10 bg-cover bg-center"
       style={{ backgroundImage: "url('/assets/images/eco-bg.png')" }}
     >
-      <div className="text-center space-y-2 mb-4 sm:mb-6">
-        <div className="text-4xl sm:text-5xl font-bold text-white drop-shadow-[0_1px_2px_black]">Score: {score}</div>
-        <div className="text-3xl sm:text-4xl text-yellow-600 drop-shadow-[0_1px_2px_black] font-semibold">🏆 High Score: {highScore}</div>
-        {gameOver && (
-          <div className="text-red-600 font-bold animate-bounce text-lg sm:text-4xl font-semibold drop-shadow-[0_1px_2px_black] ">💀 Game Over – No Moves Left!</div>
-        )}
-        <button
+      <div className="absolute top-4 w-full flex justify-center z-50">
+  <div className="text-center">
+    <div className="text-5xl sm:text-6xl font-extrabold text-white drop-shadow-[0_2px_2px_rgba(0,0,0,0.7)]">
+      Score: {score}
+    </div>
+    <div className="text-xl sm:text-2xl text-white font-semibold drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)]">
+      Best: {highScore}
+    </div>
+  </div>
+</div>
+
+<div className="text-center space-y-2 mb-4 sm:mb-6">
+  <button
           onClick={() => setShowInstructions(true)}
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
@@ -140,12 +146,12 @@ const CardCascade = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-4 w-full max-w-[95vw] gap-1">
+      <div className="grid grid-cols-4 w-full max-w-[95vw] sm:max-w-[80vw] md:max-w-[500px] lg:max-w-[450px] xl:max-w-[400px] gap-1">
         {grid.flat().map((card, index) => (
           <div key={index} className="flex items-center justify-center w-full aspect-square p-1">
             {card ? (
               <div
-                className={`relative w-full h-full rounded-xl flex flex-col items-center justify-center text-center shadow-sm backdrop-blur-md transition-all duration-300 ${classStyles[card.className]} border-2 ${bonusCards.some(b => b.id === card.id) && card.className === 'Mammals' ? jokerGlowClass : ''}`}
+                className={`relative w-full h-full rounded-xl flex flex-col items-center justify-center text-center shadow-sm backdrop-blur-md transition-all duration-300 ${classStyles[card.className]} border-2 ${bonusCards.includes(card.id) && card.className === 'Mammals' ? jokerGlowClass : ''}`}
               >
                 <img
                   src={`/assets/icons/${card.className.toLowerCase()}.png`}
@@ -153,11 +159,11 @@ const CardCascade = () => {
                   className="w-[65%] h-[65%] max-w-[65%] max-h-[65%] object-contain mb-1"
                 />
                 <div className="text-5xl sm:text-4xl font-bold leading-none">{card.rank}</div>
-                {(bonusCards.some(b => b.id === card.id) || jokerCards.some(j => j.id === card.id)) && (
+                {(bonusCards.includes(card.id) || jokerCards.includes(card.id)) && (
                   <>
                     <div className={`absolute w-16 h-16 animate-ping rounded-full opacity-70 z-10 ${sparkleColors[card.className]}`}></div>
-                    <div className="absolute top-0 w-full text-center text-sm sm:text-base text-white font-bold bg-black/70 px-1 py-0.5 rounded-t z-20 animate-fadeIn">
-                      {bonusCards.some(b => b.id === card.id)
+                    <div className="absolute top-0 text-sm sm:text-base text-white font-bold bg-black/70 px-1 rounded z-20 animate-fadeIn w-full text-center truncate">
+                      {bonusCards.includes(card.id)
                         ? '💥 Double Points!'
                         : '🃏 Mammal Merge!'}
                     </div>
@@ -189,15 +195,13 @@ const CardCascade = () => {
         <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-xl max-w-md text-sm shadow-lg relative">
             <h2 className="text-lg font-bold mb-2">How to Play</h2>
-            <ul className="list-disc list-inside space-y-2 text-gray-800 text-sm sm:text-base">
-              <li>Use arrow keys or swipe to slide cards in any direction.</li>
-              <li>Merge cards of the <strong>same class and rank</strong> to level up and earn <strong>Double Points!</strong></li>
-              <li><strong>Mammals are jokers</strong> — they can merge with <em>any class or rank</em>.</li>
-              <li>When a Mammal merges with another card, it displays <strong>“Mammal Merge”</strong>.</li>
-              <li>Each merge adds to your score — try to keep the board from filling up!</li>
-              <li>The game ends when no more moves are possible.</li>
-             </ul>
-
+            <ul className="list-disc list-inside space-y-2 text-gray-800">
+              <li>Use arrow keys or swipe to move cards in any direction.</li>
+              <li>Cards of the same class and rank merge into higher ranks.</li>
+              <li><strong>Mammals are jokers</strong> — they can merge with any class and rank!</li>
+              <li>Merging same-class cards of the same rank earns <strong>Double Points</strong>.</li>
+              <li>Try to keep the board from filling up — the game ends when no moves are left!</li>
+            </ul>
             <button
               onClick={() => setShowInstructions(false)}
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl"
@@ -214,6 +218,7 @@ const CardCascade = () => {
 };
 
 export default CardCascade;
+
 
 
 
