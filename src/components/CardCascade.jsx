@@ -30,9 +30,7 @@ const CardCascade = () => {
   const [hasMoved, setHasMoved] = useState(false);
   const mergeSound = useRef(new Audio('/assets/sounds/merge.mp3'));
   const [showInstructions, setShowInstructions] = useState(false);
-  const [highScore, setHighScore] = useState(() => {
-    return parseInt(localStorage.getItem('highScore') || '0', 10);
-  });
+  const [highScore, setHighScore] = useState(() => parseInt(localStorage.getItem('highScore') || '0', 10));
 
   useEffect(() => {
     if (hasMoved && !gameOver) {
@@ -143,44 +141,35 @@ const CardCascade = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-[repeat(4,minmax(0,1fr))] gap-1 sm:gap-2 w-[100vw] max-w-[100vw] sm:max-w-[420px] bg-white/30 p-2 sm:p-4 rounded shadow-md backdrop-blur-sm">
-        {grid.flat().map((card, index) => {
-          if (!card) {
-            return (
+      <div className="grid grid-cols-4 w-full max-w-[95vw] gap-1">
+        {grid.flat().map((card, index) => (
+          <div key={index} className="flex items-center justify-center w-full aspect-square p-1">
+            {card ? (
               <div
-                key={index}
-                className="w-full h-full aspect-square rounded-xl border border-gray-300 bg-white/10"
-              />
-            );
-          }
-
-          return (
-            <div
-              key={index}
-              className={`relative w-full h-full aspect-square rounded-xl flex flex-col items-center justify-center text-center text-base font-semibold
-              shadow-sm backdrop-blur-md transition-all duration-300
-              ${classStyles[card.className]} border-2
-              ${bonusCards.includes(card.id) && card.className === 'Mammals' ? jokerGlowClass : ''}`}
-            >
-              <img
-                src={`/assets/icons/${card.className.toLowerCase()}.png`}
-                alt={card.className}
-                className="w-16 h-16 sm:w-14 sm:h-14 mx-auto mb-1"
-              />
-              <div className="text-xl font-bold sm:text-lg">{card.rank}</div>
-              {(bonusCards.includes(card.id) || jokerCards.includes(card.id)) && (
-                <>
-                  <div className={`absolute w-16 h-16 animate-ping rounded-full opacity-70 z-10 ${sparkleColors[card.className]}`}></div>
-                  <div className="absolute top-0 text-xs text-white font-bold bg-black/70 px-1 rounded z-20 animate-fadeIn">
-                    {bonusCards.includes(card.id)
-                      ? '💥 Double Points!'
-                      : '🃏 Mammal Merge!'}
-                  </div>
-                </>
-              )}
-            </div>
-          );
-        })}
+                className={`w-full h-full rounded-xl flex flex-col items-center justify-center text-center shadow-sm backdrop-blur-md transition-all duration-300 ${classStyles[card.className]} border-2 ${bonusCards.includes(card.id) && card.className === 'Mammals' ? jokerGlowClass : ''}`}
+              >
+                <img
+                  src={`/assets/icons/${card.className.toLowerCase()}.png`}
+                  alt={card.className}
+                  className="w-16 h-16 sm:w-14 sm:h-14 mx-auto mb-1"
+                />
+                <div className="text-xl font-bold sm:text-lg">{card.rank}</div>
+                {(bonusCards.includes(card.id) || jokerCards.includes(card.id)) && (
+                  <>
+                    <div className={`absolute w-16 h-16 animate-ping rounded-full opacity-70 z-10 ${sparkleColors[card.className]}`}></div>
+                    <div className="absolute top-0 text-xs text-white font-bold bg-black/70 px-1 rounded z-20 animate-fadeIn">
+                      {bonusCards.includes(card.id)
+                        ? '💥 Double Points!'
+                        : '🃏 Mammal Merge!'}
+                    </div>
+                  </>
+                )}
+              </div>
+            ) : (
+              <div className="w-full h-full rounded-xl border border-gray-300 bg-white/10" />
+            )}
+          </div>
+        ))}
       </div>
 
       {gameOver && (
@@ -202,7 +191,7 @@ const CardCascade = () => {
           <div className="bg-white p-6 rounded-xl max-w-md text-sm shadow-lg relative">
             <h2 className="text-lg font-bold mb-2">How to Play</h2>
             <ul className="list-disc list-inside space-y-2 text-gray-800">
-              <li>Use arrow keys to move cards in any direction.</li>
+              <li>Use arrow keys or swipe to move cards in any direction.</li>
               <li>Cards of the same class and rank merge into higher ranks.</li>
               <li><strong>Mammals are jokers</strong> — they can merge with any class and rank!</li>
               <li>Merging same-class cards of the same rank earns <strong>Double Points</strong>.</li>
