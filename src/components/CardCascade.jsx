@@ -126,15 +126,18 @@ const CardCascade = () => {
       className="min-h-screen flex flex-col items-center justify-center px-2 py-6 sm:py-10 bg-cover bg-center"
       style={{ backgroundImage: "url('/assets/images/eco-bg.png')" }}
     >
-      <div className="absolute top-4 w-full flex justify-center z-50">
-        <div className="text-4xl sm:text-5xl font-bold text-white drop-shadow-[0_1px_2px_black]">Score: {score}</div>
-        <div className="text-3xl sm:text-4xl text-yellow-600 drop-shadow-[0_1px_2px_black] font-semibold">🏆 High Score: {highScore}</div>
-        {gameOver && (
-          <div className="text-red-600 font-bold animate-bounce text-lg sm:text-4xl">💀 Game Over – No Moves Left!</div>
-        )}
+      <div className="absolute top-4 left-0 w-full flex justify-between items-start px-4 z-50">
+        <div className="text-center">
+          <div className="text-5xl sm:text-6xl font-extrabold text-white bg-black/50 px-4 py-2 rounded-xl drop-shadow-[0_2px_2px_rgba(0,0,0,0.7)]">
+            Score: {score}
+          </div>
+          <div className="text-xl sm:text-2xl text-white font-semibold bg-black/50 mt-2 px-3 py-1 rounded-md drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)]">
+            Best: {highScore}
+          </div>
+        </div>
         <button
           onClick={() => setShowInstructions(true)}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-3 py-1 rounded"
         >
           ❓ How to Play
         </button>
