@@ -189,13 +189,15 @@ const CardCascade = () => {
         <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-xl max-w-md text-sm shadow-lg relative">
             <h2 className="text-lg font-bold mb-2">How to Play</h2>
-            <ul className="list-disc list-inside space-y-2 text-gray-800">
-              <li>Use arrow keys or swipe to move cards in any direction.</li>
-              <li>Cards of the same class and rank merge into higher ranks.</li>
-              <li><strong>Mammals are jokers</strong> — they can merge with any class and rank!</li>
-              <li>Merging same-class cards of the same rank earns <strong>Double Points</strong>.</li>
-              <li>Try to keep the board from filling up — the game ends when no moves are left!</li>
-            </ul>
+            <ul className="list-disc list-inside space-y-2 text-gray-800 text-sm sm:text-base">
+              <li>Use arrow keys or swipe to slide cards in any direction.</li>
+              <li>Merge cards of the <strong>same class and rank</strong> to level up and earn <strong>Double Points!</strong></li>
+              <li><strong>Mammals are jokers</strong> — they can merge with <em>any class or rank</em>.</li>
+              <li>When a Mammal merges with another card, it displays <strong>“Mammal Merge”</strong>.</li>
+              <li>Each merge adds to your score — try to keep the board from filling up!</li>
+              <li>The game ends when no more moves are possible.</li>
+             </ul>
+
             <button
               onClick={() => setShowInstructions(false)}
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl"
