@@ -171,7 +171,7 @@ const CardCascade = () => {
     <div className="absolute top-0 text-xs text-white font-bold bg-black/70 px-1 rounded z-20 animate-fadeIn">
       {bonusCards.some(b => b.id === card.id)
         ? '💥 Double Points!'
-        : '🃏 Joker Merge!'}
+        : '🃏 Mammal Merge!'}
     </div>
   </>
 )}
