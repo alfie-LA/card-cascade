@@ -130,7 +130,7 @@ const CardCascade = () => {
         <div className="text-4xl sm:text-5xl font-bold text-white drop-shadow-[0_1px_2px_black]">Score: {score}</div>
         <div className="text-3xl sm:text-4xl text-yellow-600 drop-shadow-[0_1px_2px_black] font-semibold">🏆 High Score: {highScore}</div>
         {gameOver && (
-          <div className="text-red-600 font-bold animate-bounce text-lg sm:text-4xl">💀 Game Over – No Moves Left!</div>
+          <div className="text-red-600 font-bold animate-bounce text-lg sm:text-4xl font-semibold drop-shadow-[0_1px_2px_black] ">💀 Game Over – No Moves Left!</div>
         )}
         <button
           onClick={() => setShowInstructions(true)}
