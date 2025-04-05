@@ -141,7 +141,7 @@ const CardCascade = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-4 w-full max-w-[95vw] sm:max-w-[80vw] md:max-w-[500px] lg:max-w-[450px] xl:max-w-[400px] gap-1">
+      <div className="grid grid-cols-4 grid-rows-4 w-full max-w-[95vw] sm:max-w-[80vw] md:max-w-[500px] lg:max-w-[450px] xl:max-w-[400px] gap-1">
         {grid.flat().map((card, index) => (
           <div key={index} className="flex items-center justify-center w-full aspect-square p-1">
             {card ? (
