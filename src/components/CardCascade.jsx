@@ -143,7 +143,7 @@ const CardCascade = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-4 gap-1 sm:gap-2 w-full max-w-[95vw] sm:max-w-[420px] bg-white/30 p-2 sm:p-4 rounded shadow-md backdrop-blur-sm">
+      <div className="grid grid-cols-[repeat(4,minmax(0,1fr))] gap-1 sm:gap-2 w-[100vw] max-w-[100vw] sm:max-w-[420px] bg-white/30 p-2 sm:p-4 rounded shadow-md backdrop-blur-sm">
         {grid.flat().map((card, index) => {
           if (!card) {
             return (
