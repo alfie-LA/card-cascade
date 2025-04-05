@@ -149,7 +149,7 @@ const CardCascade = () => {
             return (
               <div
                 key={index}
-                className="w-full aspect-square sm:w-20 sm:h-28 rounded-xl border border-gray-300 bg-white/10"
+                className="w-full h-full aspect-square rounded-xl border border-gray-300 bg-white/10"
               />
             );
           }
@@ -157,7 +157,7 @@ const CardCascade = () => {
           return (
             <div
               key={index}
-              className={`relative w-full aspect-square sm:w-20 sm:aspect-auto sm:h-28 rounded-xl flex flex-col items-center justify-center text-center text-base font-semibold
+              className={`relative w-full h-full aspect-square rounded-xl flex flex-col items-center justify-center text-center text-base font-semibold
               shadow-sm backdrop-blur-md transition-all duration-300
               ${classStyles[card.className]} border-2
               ${bonusCards.includes(card.id) && card.className === 'Mammals' ? jokerGlowClass : ''}`}
