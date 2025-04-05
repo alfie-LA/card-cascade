@@ -141,12 +141,12 @@ const CardCascade = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-4 w-full max-w-[95vw] gap-1">
+      <div className="grid grid-cols-4 w-full max-w-[95vw] sm:max-w-[80vw] md:max-w-[500px] lg:max-w-[450px] xl:max-w-[400px] gap-1">
         {grid.flat().map((card, index) => (
           <div key={index} className="flex items-center justify-center w-full aspect-square p-1">
             {card ? (
               <div
-                className={`relative w-full h-full rounded-xl flex flex-col items-center justify-center text-center shadow-sm backdrop-blur-md transition-all duration-300 ${classStyles[card.className]} border-2 ${bonusCards.some(b => b.id === card.id) && card.className === 'Mammals' ? jokerGlowClass : ''}`}
+                className={`relative w-full h-full rounded-xl flex flex-col items-center justify-center text-center shadow-sm backdrop-blur-md transition-all duration-300 ${classStyles[card.className]} border-2 ${bonusCards.includes(card.id) && card.className === 'Mammals' ? jokerGlowClass : ''}`}
               >
                 <img
                   src={`/assets/icons/${card.className.toLowerCase()}.png`}
@@ -154,10 +154,10 @@ const CardCascade = () => {
                   className="w-[65%] h-[65%] max-w-[65%] max-h-[65%] object-contain mb-1"
                 />
                 <div className="text-5xl sm:text-4xl font-bold leading-none">{card.rank}</div>
-                {(bonusCards.some(b => b.id === card.id) || jokerCards.some(j => j.id === card.id)) && (
+                {(bonusCards.includes(card.id) || jokerCards.includes(card.id)) && (
                   <>
                     <div className={`absolute w-16 h-16 animate-ping rounded-full opacity-70 z-10 ${sparkleColors[card.className]}`}></div>
-                    <div className="absolute top-0 text-xs text-white font-bold bg-black/70 px-1 rounded z-20 animate-fadeIn">
+                    <div className="absolute top-0 text-sm sm:text-base text-white font-bold bg-black/70 px-1 rounded z-20 animate-fadeIn w-full text-center">
                       {bonusCards.includes(card.id)
                         ? '💥 Double Points!'
                         : '🃏 Mammal Merge!'}
@@ -213,6 +213,7 @@ const CardCascade = () => {
 };
 
 export default CardCascade;
+
 
 
 
