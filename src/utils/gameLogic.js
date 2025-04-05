@@ -56,7 +56,7 @@ const mergeRow = (row, mergedCardIds, bonusCardCards, jokerCardCards) => {
       scoreGained += newRank * 10;
       merged = true;
 
-      if (sameClass && sameRank) {
+      if (!isJokerMerge && sameClass && sameRank) {
         bonusCardCards.push(mergedCard); // Same class & rank = bonus
       } else if (isJokerMerge) {
         jokerCardCards.push(mergedCard); // Joker merge but not bonus
