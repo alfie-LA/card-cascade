@@ -127,8 +127,7 @@ const CardCascade = () => {
       style={{ backgroundImage: "url('/assets/images/eco-bg.png')" }}
     >
       <div className="text-center space-y-2 mb-4 sm:mb-6">
-        // <h1 className="text-4xl sm:text-5xl font-bold">🧬 Merge Humals</h1>
-        <div className="text-4xl sm:text-5xl font-semibold">Score: {score}</div>
+        <div className="text-4xl sm:text-5xl text-yellow-600 font-semibold">Score: {score}</div>
         <div className="text-3xl sm:text-4xl text-yellow-600 font-semibold">🏆 High Score: {highScore}</div>
         {gameOver && (
           <div className="text-red-600 font-bold animate-bounce text-lg sm:text-xl">💀 Game Over – No Moves Left!</div>
