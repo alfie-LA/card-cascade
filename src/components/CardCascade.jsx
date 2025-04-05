@@ -146,14 +146,14 @@ const CardCascade = () => {
           <div key={index} className="flex items-center justify-center w-full aspect-square p-1">
             {card ? (
               <div
-                className={`w-full h-full rounded-xl flex flex-col items-center justify-center text-center shadow-sm backdrop-blur-md transition-all duration-300 ${classStyles[card.className]} border-2 ${bonusCards.includes(card.id) && card.className === 'Mammals' ? jokerGlowClass : ''}`}
+                className={`relative w-full h-full rounded-xl flex flex-col items-center justify-center text-center shadow-sm backdrop-blur-md transition-all duration-300 ${classStyles[card.className]} border-2 ${bonusCards.includes(card.id) && card.className === 'Mammals' ? jokerGlowClass : ''}`}
               >
                 <img
                   src={`/assets/icons/${card.className.toLowerCase()}.png`}
                   alt={card.className}
-                  className="w-16 h-16 sm:w-14 sm:h-14 mx-auto mb-1"
+                  className="w-[65%] h-[65%] max-w-[65%] max-h-[65%] object-contain mb-1"
                 />
-                <div className="text-xl font-bold sm:text-lg">{card.rank}</div>
+                <div className="text-2xl font-bold leading-none">{card.rank}</div>
                 {(bonusCards.includes(card.id) || jokerCards.includes(card.id)) && (
                   <>
                     <div className={`absolute w-16 h-16 animate-ping rounded-full opacity-70 z-10 ${sparkleColors[card.className]}`}></div>
@@ -213,3 +213,4 @@ const CardCascade = () => {
 };
 
 export default CardCascade;
+
